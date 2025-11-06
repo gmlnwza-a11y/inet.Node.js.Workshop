@@ -32,7 +32,11 @@ router.post('/', async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({ 
+      status : 500 ,
+      message: 'Server error',
+      data : null
+    });
   }
 });
 
@@ -49,7 +53,11 @@ router.put('/:id', async (req, res) => {
     }, { new: true });
 
     if (!updatedProduct) {
-      return res.status(404).json({ message: 'Product not found' });
+      return res.status(404).json({ 
+        status : 404 ,
+        message: 'Product not found',
+        data : null
+      });
     }
 
     res.status(200).json({ 
