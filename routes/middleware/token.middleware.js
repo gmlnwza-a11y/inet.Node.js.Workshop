@@ -3,12 +3,12 @@ const userModel = require('../../models/user.models');
 
 // token verification middleware: decodes JWT and attaches user document to req.user
 const tokenMiddleware = async (req, res, next) => {
-    const authHeader = req.headers.authorization;
+    const authHeader = req.headers["authorization"]?.split(' ')[1];
     // require header in the form: "Bearer <token>"
     if (!authHeader) {
         return res.status(401).json({ 
             status: 401, 
-            message: 'Not authorized - missing or invalid Authorization header',
+            message: 'ไม่ได้รับอนุญาต - ขาดหรือไม่ถูกต้อง header',
             data: null
         });
     }
